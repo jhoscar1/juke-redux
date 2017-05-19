@@ -45,7 +45,15 @@ export default class AppContainer extends Component {
       this.next());
     AUDIO.addEventListener('timeupdate', () =>
       this.setProgress(AUDIO.currentTime / AUDIO.duration));
+
+      this.unsubscribe = store.subscribe(() => {
+      this.setState(store.getState())
+    });
   }
+
+componentWillUnmount(){
+  this.unsubscribe();
+}
 
   onLoad (albums, artists, playlists) {
     this.setState({
