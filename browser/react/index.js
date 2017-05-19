@@ -19,13 +19,14 @@ const unsubscribe = store.subscribe(function () {
     console.log('State changed!!', store.getState());
 });
 
+
 ReactDOM.render(
   <Router history={hashHistory}>
-    <Route path='/' component={AppContainer}>
+    <Route path='/' component={AppContainer} >
       <Route path="/albums" component={Albums} />
       <Route path="/albums/:albumId" component={Album} />
       <Route path="/artists" component={FilterableArtistsContainer} />
-      <Route path="/artists/:artistId" component={Artist}>
+      <Route path="/artists/:artistId" component={Artist} >
         <Route path="albums" component={Albums} />
         <Route path="songs" component={Songs} />
       </Route>

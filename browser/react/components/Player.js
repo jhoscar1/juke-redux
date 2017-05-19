@@ -1,26 +1,25 @@
 import React from 'react';
+import { toggle, prev, next } from '../action-creators/player';
+import store from '../store';
 
 const Player = (props) => {
 
-  const currentSong = props.currentSong;
-  const currentSongList = props.currentSongList;
-  const isPlaying = props.isPlaying;
-  const progress = props.progress;
-  const prev = props.prev;
-  const toggle = props.toggle;
-  const next = props.next;
+  const currentSong = store.getState().player.currentSong;
+  const currentSongList = store.getState().player.currentSongList;
+  const isPlaying = store.getState().player.isPlaying;
+  const progress = store.getState().player.progress;
 
   return (
     <footer>
       <div style={!currentSong.id ? {display: 'none'} : null}>
         <div className="pull-left">
-          <button className="btn btn-default" onClick={prev}>
+          <button className="btn btn-default" onClick={() => store.dispatch(prev())}>
             <span className="glyphicon glyphicon-step-backward"></span>
           </button>
-          <button className="btn btn-default" onClick={toggle}>
+          <button className="btn btn-default" onClick={() => store.dispatch(toggle())}>
             <span className={isPlaying ? 'glyphicon glyphicon-pause' : 'glyphicon glyphicon-play'}></span>
           </button>
-          <button className="btn btn-default" onClick={next}>
+          <button className="btn btn-default" onClick={ () => store.dispatch(next())}>
             <span className="glyphicon glyphicon-step-forward"></span>
           </button>
         </div>
